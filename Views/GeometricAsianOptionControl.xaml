@@ -1,0 +1,61 @@
+﻿<UserControl x:Class="Financer.Views.GeometricAsianOptionControl"
+             xmlns:app="clr-namespace:Financer"
+             xmlns:utl="clr-namespace:Financer.Utilities"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d">
+
+    <StackPanel>
+        <StackPanel.Resources>
+            <utl:EnumConverter x:Key="EnumConverter"/>
+        </StackPanel.Resources>
+        <DataGridRowsPresenter HorizontalAlignment="Center" Height="352" VerticalAlignment="Top" Width="573" Margin="10,0">
+            <WrapPanel Margin="0,0,0,0" Orientation="Horizontal">
+                <Label Content="Spot Price S(0)" HorizontalAlignment="Left" Height="28" VerticalAlignment="Top" Width="240" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Century Gothic" FontSize="13.333"/>
+                <TextBox Text="{Binding SpotPrice}" PreviewTextInput="FilterTextInput"
+                    Name="SpotPriceBox" HorizontalAlignment="Left" Height="28" TextWrapping="Wrap" VerticalAlignment="Top" Width="225"/>
+            </WrapPanel>
+            <WrapPanel Margin="0,10,0,0" Orientation="Horizontal">
+                <Label Content="Volatility σ" HorizontalAlignment="Left" Height="28" VerticalAlignment="Top" Width="240" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Century Gothic" FontSize="13.333"/>
+                <TextBox Text="{Binding Volatility}" PreviewTextInput="FilterTextInput"
+                    Name="VolatilityBox" HorizontalAlignment="Left" Height="28" TextWrapping="Wrap" VerticalAlignment="Top" Width="225"/>
+            </WrapPanel>
+            <WrapPanel Margin="0,10,0,0" Orientation="Horizontal">
+                <Label Content="Risk-free Interest rate r" HorizontalAlignment="Left" Height="28" VerticalAlignment="Top" Width="240" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Century Gothic" FontSize="13.333"/>
+                <TextBox Text="{Binding InterestRate}" PreviewTextInput="FilterTextInput"
+                    Name="InterestRateBox" HorizontalAlignment="Left" Height="28" TextWrapping="Wrap" VerticalAlignment="Top" Width="225"/>
+            </WrapPanel>
+            <WrapPanel Margin="0,10,0,0" Orientation="Horizontal">
+                <Label Content="Time to Maturity T" HorizontalAlignment="Left" Height="28" VerticalAlignment="Top" Width="240" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Century Gothic" FontSize="13.333"/>
+                <TextBox Text="{Binding Maturity}" PreviewTextInput="FilterTextInput"
+                    Name="MaturityBox" HorizontalAlignment="Left" Height="28" TextWrapping="Wrap" VerticalAlignment="Top" Width="225"/>
+            </WrapPanel>
+            <WrapPanel Margin="0,10,0,0" Orientation="Horizontal">
+                <Label Content="Strike K" HorizontalAlignment="Left" Height="28" VerticalAlignment="Top" Width="240" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Century Gothic" FontSize="13.333"/>
+                <TextBox Text="{Binding StrikePrice}" PreviewTextInput="FilterTextInput"
+                    Name="StrikePriceBox" HorizontalAlignment="Left" Height="28" TextWrapping="Wrap" VerticalAlignment="Top" Width="225"/>
+            </WrapPanel>
+            <WrapPanel Margin="0,10,0,0" Orientation="Horizontal">
+                <Label Content="Number of Observation Time n" HorizontalAlignment="Left" Height="28" VerticalAlignment="Top" Width="240" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Century Gothic" FontSize="13.333"/>
+                <TextBox Text="{Binding ObservationTime}" PreviewTextInput="FilterTextInput"
+                    Name="ObservationNumBox" HorizontalAlignment="Left" Height="28" TextWrapping="Wrap" VerticalAlignment="Top" Width="225"/>
+            </WrapPanel>
+            <WrapPanel Margin="0,10,0,0" Orientation="Horizontal">
+                <Label Content="Option Type" HorizontalAlignment="Left" Height="28" VerticalAlignment="Top" Width="240" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Century Gothic" FontSize="13.333"/>
+                <RadioButton IsChecked="{Binding OptionType, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static app:OptionTypeEnum.Call}}"
+                    Name="CallRadioButton" Content="Call Option" VerticalAlignment="Center" Width="105" FontFamily="Century Gothic"/>
+                <RadioButton IsChecked="{Binding OptionType, Converter={StaticResource EnumConverter}, ConverterParameter={x:Static app:OptionTypeEnum.Put}}"
+                    Name="PutRadioButton" Content="Put Option" Width="105" VerticalAlignment="Center" FontFamily="Century Gothic"/>
+            </WrapPanel>
+        </DataGridRowsPresenter>
+        <WrapPanel HorizontalAlignment="Center" Height="48" VerticalAlignment="Center" Width="534" Margin="0,5,0,0">
+            <Button Name="ResultButton" Content="CALCULATE" Height="44" Width="120" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Century Schoolbook" FontSize="14.667" 
+                    Foreground="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}" Background="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}"
+                    IsEnabled="{Binding IsCalculateEnabled}" Command="{Binding CalculateCommand}"/>
+            <TextBox Text="{Binding Result, Mode=TwoWay}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsReadOnly="True"
+                Name="ResultBox" TextWrapping="Wrap" Margin="10,0,0,0" Width="400" FontFamily="Arial Black" FontSize="13.333" Height="44" Background="White"></TextBox>
+        </WrapPanel>
+    </StackPanel>
+</UserControl>

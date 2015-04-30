@@ -1,0 +1,33 @@
+﻿<Window x:Class="Financer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Financer" Height="485" Width="875" 
+        MaxHeight="485" MaxWidth="875" MinHeight="485" MinWidth="875"
+        Background="Black"
+        DataContext="{Binding Main, Source={StaticResource Locator}}">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Skins/MainSkin.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid Background="{DynamicResource {x:Static SystemColors.MenuBrushKey}}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="254*"/>
+            <ColumnDefinition Width="613*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel HorizontalAlignment="Left" Height="415" Margin="20,30,0,0" VerticalAlignment="Top" Width="215">
+            <Button Content="EUROPEAN OPTION" Height="65" Background="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}" FontFamily="Century Schoolbook" Command="{Binding ChangeToEuropeanOptionCommand}" FontWeight="Bold"/>
+            <Button Content="IMPLIED VOLATILITY" Height="65" Background="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}" FontFamily="Century Schoolbook" Command="{Binding ChangeToVolatilityCommand}" FontWeight="Bold"/>
+            <Button Content="AMERICAN OPTION" Height="65" Background="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}" FontFamily="Century Schoolbook" Command="{Binding ChangeToAmericanOptionCommand}" FontWeight="Bold"/>
+            <Button Content="GEOMATIC ASIAN OPTION" Height="65" Background="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}" FontFamily="Century Schoolbook" Command="{Binding ChangeToGeomaticAsianOptionCommand}" FontWeight="Bold"/>
+            <Button Content="ARITHMETIC ASIAN OPTION" Height="65" Background="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}" FontFamily="Century Schoolbook" Command="{Binding ChangeToArithmeticAsianOptionCommand}" FontWeight="Bold"/>
+            <Label Name="PageName" Content="{Binding PageName}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,35,0,0" Height="40" FontFamily="Century Schoolbook" FontSize="14.667"/>
+        </StackPanel>
+
+        <ContentControl Grid.Column="1" Margin="10,30,10,10" Content="{Binding ContentControlView}"/>
+    </Grid>
+</Window>
